@@ -18,13 +18,13 @@
 \usepackage{ifthen}
 
 %=====================================================================
-% Commands
+% Style handling
 %=====================================================================
 
-  \setlength{\headheight}{15pt}
-  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{8 de Março, 2016}
-  \lfoot{}\cfoot{\thepage}\rfoot{}
-  \pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{8 de Março, 2016}
+\lfoot{}\cfoot{\thepage}\rfoot{}
+\pagestyle{fancy}
 
 \ifx\pdfoutput\undefined                         %LaTeX
   \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
@@ -66,38 +66,28 @@
 \renewcommand{\labelenumi}{\theenumi}
 \renewcommand{\theenumii}{\roman{enumii}}
 
-% \def\problemmark{}
-
-% % Typesetting problems
-
-% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
-% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
-% % \theProblemNum.}}
-% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
-% % \newcommand*{\solution}{\soln{Solution}}
-% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
-% % \textbf{\Large Part (\theSubProblemNum)}}
-
-% \newcommand\problem{\@startsection{problem}{1}{\z@}%
-%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
-%                      {1.5ex \@plus .2ex}%
-%                      {\normalfont\large\bfseries}}
+%=====================================================================
+% Document
+%=====================================================================
 
 \begin{document}
 
 \problem{1.}
-Seja $S$ o conjunto formado por todos os conjuntos que não contêm a si mesmos (como elemento): 
-\begin{equation}
-    S = \{ X \mid X \notin X\}
-\end{equation}
+  Descrição do problema
+  
+  \begin{equation}
+      S = \{ X \mid X \notin X\}
+  \end{equation}
+
   \begin{enumerate}
-    \item Mostre que a suposição de que $S \in S$ leva a uma contradição.
-    \item Mostre que a suposição de que $S \notin S$ leva a uma contradição.
+    \item Item a
+    \item Item b
   \end{enumerate}
+
 \solution
   \part
-    <<Solution to part (a)>>
+    Solução a
   \part
-    <<Solution to part (b)>>
+    Solução b
 
 \end{document}
