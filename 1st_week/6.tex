@@ -92,24 +92,25 @@ Sejam $ P(x) $, $ Q(x) $, $ R(x) $ e $ S(x) $ as afirmações `$ x $ é um pato'
 
   \begin{enumerate}
     \item Expresse as seguintes quatro afirmações em termos de $ P(x) $, $ Q(x) $, $ R(x) $, $ S(x) $, quantificadores e operadores lógicos.
-  \begin{enumerate}[label=\arabic*.]
-      \item Nenhum pato está disposto a dançar valsa.
-      \item Nenhum oficial se recusa a dançar valsa.
-      \item Todas as minhas aves são patos.
-      \item Minhas aves não são oficiais.
-  \end{enumerate}
+    \begin{enumerate}[label=\arabic*.]
+        \item Nenhum pato está disposto a dançar valsa.
+        \item Nenhum oficial se recusa a dançar valsa.
+        \item Todas as minhas aves são patos.
+        \item Minhas aves não são oficiais.
+    \end{enumerate}
     \item Responda à pergunta: A afirmação 4 decorre de 1, 2 e 3? Se não, há uma conclusão que decorra?
   \end{enumerate}
 
 \solution
   \part
     \begin{enumerate}[label=\arabic*.]
-      \item Nenhum pato está disposto a dançar valsa.
-      \item Nenhum oficial se recusa a dançar valsa.
-      \item Todas as minhas aves são patos.
-      \item Minhas aves não são oficiais.
+      \item $\forall x(P(x) \rightarrow \lnot S(x))$
+      \item $\forall x(R(x) \rightarrow S(x))$
+      \item $\forall x(Q(x) \rightarrow P(x))$
+      \item $\forall x(Q(x) \rightarrow \lnot R(x))$
     \end{enumerate}
   \part
-    <<Solution to part (b)>>
+    Sim. A partir do item 1 e 2, conclui-se que nenhum pato é oficial, uma vez que tal afirmação enfrentaria uma contradição: nenhum pato está disposto a dançar valsa enquanto todos os oficiais, sim. A 3 afirma que todas as minhas aves são patos - ou seja, não oficais,
+    ao que discorre à conclusão do item 4.
 
 \end{document}
