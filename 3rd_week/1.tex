@@ -1,0 +1,108 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{15 de Março, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{1.}
+Um número real $ x $ é chamado de limite superior de um conjunto $ S $ de números reais se $ x $ for maior ou igual a todo membro de $ S $. Um número real $ x $ é um supremo de $ S $ se ele for um limite superior de $ S $ e for menor ou igual a todo limite superior de $ S $. Se $ S $ possuir um supremo, ele é único.
+  \begin{enumerate}[label=\arabic*.]
+    \item Usando quantificadores, expresse o fato de que $ x $ é um limite superior de $ S $.
+    \item Usando quantificadores, expresse o fato de que $ x $ é o supremo de $ S $.
+    \item Usando quantificadores, expresse o fato de que se $ x $ for um supremo de $ S $, então $ x $ é único (você pode representar os resultados dos dois itens anteriores com predicados).
+  \end{enumerate}
+
+\solution
+  \part
+    Considerando $L(x, s) = x \geq s$
+  \part
+  \begin{enumerate}[label=\arabic*.]
+    \item $\forall s \in S \exists x(L(x, s))$
+    \item $\forall y \forall s \in S(L(y, s)) \land \exists x (L(x, s) \land L(y, x))$
+    \item $\forall y \forall s \in S(L(y, s)) \land \exists x (L(x, s) \land L(y, x)) \land (\forall w \not = x \rightarrow \lnot ((L(w, s) \land L(y, w))$
+  \end{enumerate}
+
+\end{document}
