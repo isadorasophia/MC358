@@ -1,0 +1,155 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{15 de Março, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{7.}
+  \textbf{Prove ou disprove:} todo número ímpar pode ser escrito como a soma de um primo e o dobro de um quadrado. Dica: Escreva (e execute) um programa (simples) que verifica que 5777 é um contra-exemplo. Se você é um bom programador, seu programa só precisará testar a primalidade de 54 números inteiros.
+
+  Antes de responder, considere qual a maneira mais sucinta de você apresentar sua resposta! \textit{Sugestão:} anexe um PDF com não mais de 54 linhas.
+
+\solution
+  A proposição é falsa, uma vez que o número $5777$ é um contra-exemplo: $\nexists a, b$ t.q. $a$ é primo e $a + 2b^2 = 5777$. A verificação foi feita através de um programa escrito em C, como pode ser conferida a seguir:
+
+  Testing for a = 2 and b = 1 ... 53 FAILED! \\
+  Testing for a = 3 and b = 1 ... 53 FAILED! \\
+  Testing for a = 5 and b = 1 ... 53 FAILED! \\
+  Testing for a = 7 and b = 1 ... 53 FAILED! \\
+  Testing for a = 11 and b = 1 ... 53 FAILED! \\
+  Testing for a = 13 and b = 1 ... 53 FAILED! \\
+  Testing for a = 17 and b = 1 ... 53 FAILED! \\
+  Testing for a = 19 and b = 1 ... 53 FAILED! \\
+  Testing for a = 23 and b = 1 ... 53 FAILED! \\
+  Testing for a = 29 and b = 1 ... 53 FAILED! \\
+  Testing for a = 31 and b = 1 ... 53 FAILED! \\
+  Testing for a = 37 and b = 1 ... 53 FAILED! \\
+  Testing for a = 41 and b = 1 ... 53 FAILED! \\
+  Testing for a = 43 and b = 1 ... 53 FAILED! \\
+  Testing for a = 47 and b = 1 ... 53 FAILED! \\
+  Testing for a = 53 and b = 1 ... 53 FAILED! \\
+  Testing for a = 59 and b = 1 ... 53 FAILED! \\
+  Testing for a = 61 and b = 1 ... 53 FAILED! \\
+  Testing for a = 67 and b = 1 ... 53 FAILED! \\
+  Testing for a = 71 and b = 1 ... 53 FAILED! \\
+  Testing for a = 73 and b = 1 ... 53 FAILED! \\
+  Testing for a = 79 and b = 1 ... 53 FAILED! \\
+  Testing for a = 83 and b = 1 ... 53 FAILED! \\
+  Testing for a = 89 and b = 1 ... 53 FAILED! \\
+  Testing for a = 97 and b = 1 ... 53 FAILED! \\
+  Testing for a = 101 and b = 1 ... 53 FAILED! \\
+  Testing for a = 103 and b = 1 ... 53 FAILED! \\
+  Testing for a = 107 and b = 1 ... 53 FAILED! \\
+  Testing for a = 109 and b = 1 ... 53 FAILED! \\
+  Testing for a = 113 and b = 1 ... 53 FAILED! \\
+  Testing for a = 127 and b = 1 ... 53 FAILED! \\
+  Testing for a = 131 and b = 1 ... 53 FAILED! \\
+  Testing for a = 137 and b = 1 ... 53 FAILED! \\
+  Testing for a = 139 and b = 1 ... 53 FAILED! \\
+  Testing for a = 149 and b = 1 ... 53 FAILED! \\
+  Testing for a = 151 and b = 1 ... 53 FAILED! \\
+  Testing for a = 157 and b = 1 ... 53 FAILED! \\
+  Testing for a = 163 and b = 1 ... 52 FAILED! \\
+  Testing for a = 167 and b = 1 ... 52 FAILED! \\
+  Testing for a = 173 and b = 1 ... 52 FAILED! \\
+  Testing for a = 179 and b = 1 ... 52 FAILED! \\
+  Testing for a = 181 and b = 1 ... 52 FAILED! \\
+  Testing for a = 191 and b = 1 ... 52 FAILED! \\
+  Testing for a = 193 and b = 1 ... 52 FAILED! \\
+  Testing for a = 197 and b = 1 ... 52 FAILED! \\
+  Testing for a = 199 and b = 1 ... 52 FAILED! \\
+  Testing for a = 211 and b = 1 ... 52 FAILED! \\
+  Testing for a = 223 and b = 1 ... 52 FAILED! \\
+  Testing for a = 227 and b = 1 ... 52 FAILED! \\
+  Testing for a = 229 and b = 1 ... 52 FAILED! \\
+  Testing for a = 233 and b = 1 ... 52 FAILED! \\
+  Testing for a = 239 and b = 1 ... 52 FAILED! \\
+  Testing for a = 241 and b = 1 ... 52 FAILED! \\
+  Testing for a = 251 and b = 1 ... 52 FAILED! \\
+
+\end{document}
