@@ -1,0 +1,126 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+\usepackage{amssymb}
+\newcommand*{\CQD}{\hfill\ensuremath{\blacksquare}}%
+
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{19 de Abril, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{6.}
+  \begin{enumerate}[label=\arabic*.]
+    \item Prove por indução em $ n $ que a derivada de $ x^n $ em relação a $ x $ é igual a $ nx^{n-1} $ para qualquer inteiro $ n > 0$. Dica: utilize a regra do produto para derivadas.
+    \item Prove por indução em $ n $ que a derivada de $ x^n $ em relação a $ x $ é igual a $ nx^{n-1} $ para qualquer inteiro $ n \leq 0 $, e $ x \neq 0 $.
+  \end{enumerate}
+
+\solution
+  \begin{enumerate}[label=\arabic*.]
+    \item Prova por indução em $n$:
+
+    \textbf{Base:} Em $n = 1$, a derivada de $x^1$ em relação a $x$ é $1 \cdot x^{1 - 1} = 1$. \CQD
+
+    \textbf{Hipótese:} A derivada de $ x^n $ em relação a $ x $ é igual a $ nx^{n-1} $ para qualquer inteiro $ n > 0$.
+
+    \textbf{Passo:} Considere $x^{n + 1} = x \cdot x^n$. Utilizando a regra do produto para a derivada em $x$, temos que $\frac{d}{dx} (x \cdot x^n) = x \cdot \frac{d}{dx}(x^n) + \frac{d}{dx}(x) \cdot x^n$.
+
+    Pela nossa hipótese, $x \cdot \frac{d}{dx}(x^n) + \frac{d}{dx}(x) \cdot x^n = x (nx^{n - 1}) + x^n = nx^n + x^n = (n + 1)x^n$. Ou seja, $\frac{d}{dx} x^{n + 1} = (n + 1)x^{(n + 1) - 1}$. \CQD
+
+    \item Prova por forte em $n$:
+
+    \textbf{Base:} Em $n = 0$, a derivada de $x^0$ em relação a $x$ é $0 \cdot x^{0 - 1} = 0$; 
+
+    Em $n = -1$, a derivada de $x^{-1}$ em relação a $x$ é $-1 \cdot x^{(-1 - 1)} = -x^{-2}$. \CQD
+
+    \textbf{Hipótese:} A derivada de $ x^n $ em relação a $ x $ é igual a $ nx^{n-1} $ para qualquer inteiro $ n \leq 0$ e $x \neq 0$.
+
+    \textbf{Passo:} Considere $x^{n - 1} = \cfrac{x^n}{x}$. Utilizando a regra do quociente para a derivada em $x$, temos que $\frac{d}{dx} \cfrac{x^n}{x} = \cfrac{x \cdot \frac{d}{dx}(x^n) - \frac{d}{dx}(x) \cdot x^n}{x^2}$.
+
+    Pela nossa hipótese, $\cfrac{x \cdot \frac{d}{dx}(x^n) - \frac{d}{dx}(x) \cdot x^n}{x^2} = \cfrac{x (nx^{n - 1}) - x^n}{x^2} = \cfrac{nx^n - x^n}{x^2} =$
+    
+    $x^{n - 2}(n - 1)$. Ou seja, $\frac{d}{dx} x^{n - 1} = (n - 1)x^{(n - 1) - 1}$. \CQD
+  \end{enumerate}
+\end{document}

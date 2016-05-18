@@ -1,0 +1,112 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+\usepackage{amssymb}
+
+\newcommand*{\CQD}{\hfill\ensuremath{\blacksquare}}%
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{03 de Maio, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{5.}
+ Suponha que $ A = \{1, 2, 3\}, B = \{4, 5, 6\}, R = \{(1,4), (1, 5), (2, 5), (3, 6)\} $ e $ S = \{(4, 5), (4, 6), (5, 4), (6, 6)\} $. Note que $ R $ é uma relação de $ A $ para $ B $ enquanto $ S $ é uma relação de $ B $ em $ B $.
+
+Encontre as seguintes relações:
+
+    \begin{enumerate}[label=\arabic*.]
+    \item $ S \circ R $
+    \item $ S \circ S^{-1} $
+    \end{enumerate}
+
+\solution
+    Sendo $S: B \rightarrow B$, $S^{-1} = B \rightarrow B $ e $R: A \rightarrow B$. 
+
+    \begin{enumerate}[label=\arabic*.]
+      \item $ S \circ R = A \rightarrow B = \{(1,5), (1, 6), (1, 4), (2, 4), (3, 6)\}$.
+      \item $ S \circ S^{-1} = B \rightarrow B = \{(4, 4), (5, 5), (6, 6)\}$.
+    \end{enumerate}
+
+\end{document}

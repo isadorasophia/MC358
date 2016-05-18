@@ -1,0 +1,121 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+\usepackage{amssymb}
+\newcommand*{\CQD}{\hfill\ensuremath{\blacksquare}}%
+
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{03 de Maio, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{8.}
+Uma barra de chocolate consiste de $ n $ quadrados formando um padrão retangular:
+
+    \begin{center}
+    \includegraphics{figures/chocolate} 
+    \end{center}
+
+    Você pode quebrar a barra, mas sempre ao longo das linhas que separam os quadrados.
+
+    Conjecture qual o menor número de quebras que produzem $ n $ quadrados separados.
+    Prove sua conjectura por indução.
+    Se a `barra' fosse conexa mas já não formasse um padrão retangular, devido à remoção de alguns quadrados de chocolate, sua prova ainda funcionaria ou não?
+
+\solution
+    \part O menor número de quebras para produzir os $n$ quadrados separados é $n - 1$.
+
+    \part Prova por indução forte em $n$:
+
+    \textbf{Base:} Em $n = 1$, a barra já está com o quadrado separado e deve-se quebrar $1 - 1 = 0$ vezes. \CQD
+
+    \textbf{Hipótese:} O menor número de quebras para separar todos os quadrados de uma barra chocolate de $n$ quadrados é $n - 1$ para $n \geq 1$.
+
+    \textbf{Passo:} Separe uma barra de chocolate de tamanho $n + 1$ em dois pedaços de tamanhos $n_1$ e $n_2$, de forma que $n_1 + n_2 = n + 1$. 
+
+    P.H.I., o menor número de quebras para separar todos os quadrados da barra de tamanho $n_1$ é $n_1 - 1$, enquanto a de $n_2$ é $n_2 - 2$. Dessa forma, o total necessário para quebrar a barra de tamanho $n + 1$ é $1 + (n_1 - 1) + (n_2 - 1) = (n_1 + n_2) + 1 - 2 = (n + 1) - 1 = n$. \CQD
+
+    \part A prova continuaria válida, uma vez que o passo permanece coerente - basta dividir a barra em dois.
+\end{document}
