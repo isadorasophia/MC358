@@ -1,0 +1,105 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+\usepackage{mathrsfs}
+
+\usepackage{amssymb}
+\newcommand*{\CQD}{\hfill\ensuremath{\blacksquare}}%
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{06 de Junho, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{3.}
+  Mostre que, para qualquer grafo, se cada uma das suas componentes conexas é bipartida, então ele é bipartido.
+
+\solution
+  Considere um grafo $G$ com cada uma de suas componentes conexas bipartidas, ou seja, podemos separá-los em grupos $V_{i1}$ e $V_{i2}$, sendo $i$ o número da componente conexa.
+
+  Podemos agrupar cada um dos $V_{i1}$ em um grupo $V_1$, uma vez que eles não se conectam entre si, e analogamente todos os $V_{i2}$ em um grupo $V_2$. 
+
+  $V_1$ e $V_2$ são tais que $V_1 \cup V_2 = G$ e $V_1 \cap V_2 = \emptyset$ e todo $v \in V_1$ é um vértice disjunto em relação aos demais vértices de $V$, e existe pelo menos um $v$ que se conecta a um vértice de $V_2$, e vice-versa.
+
+\end{document}

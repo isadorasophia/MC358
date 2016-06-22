@@ -1,0 +1,111 @@
+%=====================================================================
+% jhwhw.cls
+% Provide jhwhw.cls class
+%=====================================================================
+
+%=====================================================================
+% Identification
+%=====================================================================
+
+\documentclass[12pt, letterpaper]{report}
+
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[top=1in,bottom=1in,left=1in,right=1in]{geometry}
+\usepackage{empheq}
+\usepackage{ifthen}
+
+\usepackage{enumitem}
+
+\usepackage{mathrsfs}
+
+\usepackage{amssymb}
+\newcommand*{\CQD}{\hfill\ensuremath{\blacksquare}}%
+
+%=====================================================================
+% Commands
+%=====================================================================
+
+  \setlength{\headheight}{15pt}
+  \lhead{Isadora S. G. Rodopoulos}\chead{MC358}\rhead{17 de Junho, 2016}
+  \lfoot{}\cfoot{\thepage}\rfoot{}
+  \pagestyle{fancy}
+
+\ifx\pdfoutput\undefined                         %LaTeX
+  \RequirePackage[ps2pdf,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\else                                            %PDFLaTeX
+  \RequirePackage[pdftex,bookmarks=true]{hyperref}
+  \hypersetup{ %
+    pdfauthor   = {\@author},
+    pdftitle    = {\@title},
+    pdfcreator  = {LaTeX with hyperref package},
+    pdfproducer = {dvips + ps2pdf}
+  }
+\pdfadjustspacing=1
+\fi
+
+% Set up counters for problems and subsections
+
+\newcounter{ProblemNum}
+\newcounter{SubProblemNum}[ProblemNum]
+
+\renewcommand{\theProblemNum}{\arabic{ProblemNum}}
+\renewcommand{\theSubProblemNum}{\alph{SubProblemNum}}
+
+
+\newcommand*{\anyproblem}[1]{\newpage\subsection*{#1}}
+\newcommand*{\problem}[1]{\stepcounter{ProblemNum} %
+   \anyproblem{Questão #1}}
+\newcommand*{\soln}[1]{\subsubsection*{#1}}
+\newcommand*{\solution}{\soln{Solução}}
+\renewcommand*{\part}{\stepcounter{SubProblemNum} %
+  \soln{Parte (\theSubProblemNum)}}
+
+\renewcommand{\theenumi}{(\alph{enumi})}
+\renewcommand{\labelenumi}{\theenumi}
+\renewcommand{\theenumii}{\roman{enumii}}
+
+% \def\problemmark{}
+
+% % Typesetting problems
+
+% % \newcommand*{\prob}[1]{\newpage \noindent \textbf{\Large #1}}
+% % \newcommand*{\problem}[1]{\stepcounter{ProblemNum} \prob{Problem %
+% % \theProblemNum.}}
+% % \newcommand*{\soln}[1]{\\ \noindent \textbf{\Large #1}}
+% % \newcommand*{\solution}{\soln{Solution}}
+% % \renewcommand*{\part}{\\ \noindent \stepcounter{SubProblemNum} %
+% % \textbf{\Large Part (\theSubProblemNum)}}
+
+% \newcommand\problem{\@startsection{problem}{1}{\z@}%
+%                      {-3.25ex \@plus -1ex \@minus -.2ex}%
+%                      {1.5ex \@plus .2ex}%
+%                      {\normalfont\large\bfseries}}
+
+\begin{document}
+
+\problem{2.}
+  Um grafo não dirigido $ G $ possui uma largura $ w $ se os seus vértices podem ser dispostos em uma sequência $ v_1, v_2, v_3, \dots, v_n $, tal que cada vértice $ v_i $ é vizinho de no máximo $ w $ dos vértices que o precede (vértice $ v_j $ precede $ v_i $ se $ j < i $). Prove por indução que todo grafo com largura $ w $ é $ (w + 1) $-colorível.
+
+\solution
+  Prova por indução em $w =$ largura do grafo $G$.
+
+  \textbf{Base:} Se $w = 1$ em um grafo $G$ não dirigido, disposto em uma sequência $v_1, v_2, v_3, \dots, v_n$, todo vértice $v_i$ possui, no máximo, $1$ vizinho que o procede. Ou seja, basta colorir todo $v_j$ que procede um vértice $v_i$ com a cor \textbf{A} e \textbf{B}, respectivamente. Ou seja, $G$ é $ (w + 1) = 2$ colorível.
+
+  \textbf{Hipótese:} Um grafo com largura $w > 1$ é $(w + 1)$ colorível.
+
+  \textbf{Passo:} Considere um grafo $G$ com largura $w + 1$. Em seguida, elimine um precedente de cada vértice com $w + 1$ vizinhos precedentes, removendo a aresta entre $v_j$ e $v_i$.
+
+  O grafo está disposto de $v_n$ vértices de largura $w$. P.H.I., este grafo é $w + 1$ colorível.
+
+  Em seguida, restaure os precedentes, adicionando novamente as arestas removidas. Para colorir corretamente o gráfico, em cada $v_j$ e $v_i$ de aresta restaurada com mesma cor, basta colorir um dos vértices de uma nova cor. Assim, conclui-se que o grafo é $w + 1$ colorível.
+
+\end{document}
